@@ -5,6 +5,8 @@ import WeatherContainer from './containers/WeatherContainer';
 const WeatherApp = styled.div`
     height: 100vh;
     background-color: #6ca3ff;
+    font-family: sans-serif;
+    color: #FFF;
 `;
 const AppTitle = styled.h1`
     margin: 0;

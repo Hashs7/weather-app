@@ -1,11 +1,11 @@
 // import { entities } from "./store/reducers/entities";
 
-
 export const generateInitialState = () => {
     return {
         current: {
-            city: 'Annecy',
-            country: 'France',
+            city: '',
+            country: '',
+            conditionName: '',
             date: '',
             lat: '',
             long: '',

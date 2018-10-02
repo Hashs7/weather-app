@@ -1,1 +1,2 @@
 export const UPDATE_POSITION = 'UPDATE_POSITION';
+export const UPDATE_WEATHER = 'UPDATE_WEATHER';

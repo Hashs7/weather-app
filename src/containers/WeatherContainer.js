@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import WeatherBox from '../components/WeatherBox';
-import getLocation from '../api/index';
+import getLocation, {getCurrentWeather} from '../api/index';
 
 /**
  *
@@ -10,8 +10,14 @@ import getLocation from '../api/index';
  */
 const mapStateToProps = state => {
     return {
-        currentCity: state.current.city,
-        currentCountry: state.current.country,
+        currentCity             : state.current.city,
+        currentCountry          : state.current.country,
+        currentLat              : state.current.lat,
+        currentLong             : state.current.long,
+        currentConditionName    : state.current.conditionName,
+        currentTemp             : state.current.temperature,
+        currentHumidity         : state.current.humidity,
+        currentImg              : state.current.icon,
     }
 };
 
@@ -34,10 +40,12 @@ const mapDispatchToProps = dispatch => {
  * @returns {{getUserPosition: (function(): void)}}
  */
 const mergeProps  = (propsFromState, propsFromDispatch, ownProps) => {
+    const { currentLat, currentLong } = propsFromState;
     return {
         ...propsFromState,
         ...propsFromDispatch,
-        getUserPosition: () => getLocation(propsFromDispatch.dispatch)
+        getUserPosition: () => getLocation(propsFromDispatch.dispatch),
+        getWeather: () => getCurrentWeather(currentLat, currentLong, propsFromDispatch.dispatch),
     }
 };
 

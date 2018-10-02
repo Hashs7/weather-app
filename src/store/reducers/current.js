@@ -1,4 +1,4 @@
-import { UPDATE_POSITION } from '../actions/actions'
+import { UPDATE_POSITION, UPDATE_WEATHER } from '../actions/actions'
 
 /**
  *
@@ -13,8 +13,24 @@ export const current = (state = {}, action) => {
                 ...state,
                 lat: action.payload.latPos,
                 long: action.payload.longPos
-/*                mailbox: action,
-                userMailbox:  action.userMailbox*/
+            };
+
+        case UPDATE_WEATHER:
+            const locationName      = action.datas.location.name;
+            const locationCountry   = action.datas.location.country;
+            const currentImg        = action.datas.current.condition.icon;
+            const currentCondition  = action.datas.current.condition.text;
+            const currentTemp       = action.datas.current.temp_c;
+            const currentHumidity   = action.datas.current.humidity;
+
+            return {
+                ...state,
+                city: locationName,
+                country: locationCountry,
+                conditionName: currentCondition,
+                temperature: currentTemp,
+                humidity: currentHumidity,
+                icon: currentImg,
             }
     }
     return state

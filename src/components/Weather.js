@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import cloud from '../assets/img/cloudy.svg';
+// const imgPath = '../assets/img/';
 
 const StyledWeather = styled.div`
     text-align: center;
@@ -17,13 +17,14 @@ const IconContainer = styled.div`
 `;
 
 
-const Weather = () => {
+
+const Weather = (props) => {
     return (
         <StyledWeather>
-            <WeatherTitle>Nuageux</WeatherTitle>
             <IconContainer>
-                <img src={cloud} alt=""/>
+                <img src={props.imgSrc} alt=""/>
             </IconContainer>
+            <WeatherTitle>{props.name}</WeatherTitle>
         </StyledWeather>
     );
 };
