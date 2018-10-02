@@ -1,4 +1,4 @@
-import { UPDATE_POSITION, UPDATE_WEATHER } from '../actions/actions'
+import { UPDATE_POSITION, UPDATE_WEATHER, CHANGE_INDEX_VUE, VUE_HOME } from '../actions/actions'
 
 /**
  *
@@ -31,7 +31,16 @@ export const current = (state = {}, action) => {
                 temperature: currentTemp,
                 humidity: currentHumidity,
                 icon: currentImg,
-            }
+                vueIndex: VUE_HOME
+            };
+
+        case CHANGE_INDEX_VUE:
+            return{
+                ...state,
+                vueIndex: action.index
+            };
+        default:
+            return state;
     }
     return state
 };

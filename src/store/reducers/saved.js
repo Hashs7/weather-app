@@ -6,7 +6,7 @@
  * @param action
  * @returns {*}
  */
-export const settings = (state = {}, action) => {
+export const saved = (state = {}, action) => {
     switch(action.type) {
         case 'SELECT_MAILBOX':
             return {
@@ -18,4 +18,4 @@ export const settings = (state = {}, action) => {
     return state
 };
 
-export default settings;
+export default saved;

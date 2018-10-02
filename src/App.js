@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import WeatherContainer from './containers/WeatherContainer';
+import NavigationContainer from './containers/NavigationContainer';
+import { getLocation } from './api/index';
 
 const WeatherApp = styled.div`
     height: 100vh;
@@ -8,21 +10,43 @@ const WeatherApp = styled.div`
     font-family: sans-serif;
     color: #FFF;
 `;
-const AppTitle = styled.h1`
-    margin: 0;
-`;
 
 class App extends Component {
-  render() {
-    return (
-      <WeatherApp>
-        <header className="App-header">
-          <AppTitle className="App-title">Welcome to weather app</AppTitle>
-        </header>
-          <WeatherContainer />
-      </WeatherApp>
-    );
-  }
+    componentDidMount(){
+        this.props.getUserPosition();
+    }
+    render() {
+        return (
+          <WeatherApp>
+            <NavigationContainer />
+          </WeatherApp>
+        );
+    }
 }
 
-export default App;
+/**
+ *
+ * @param dispatch
+ * @returns {{dispatch: *}}
+ */
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch: dispatch,
+    }
+};
+
+/**
+ *
+ * @param propsFromState
+ * @param propsFromDispatch
+ * @param ownProps
+ * @returns {{getUserPosition: (function(): void)}}
+ */
+const mergeProps  = (propsFromState, propsFromDispatch, ownProps) => {
+    return {
+        ...propsFromState,
+        ...propsFromDispatch,
+        getUserPosition: () => getLocation(propsFromDispatch.dispatch),
+    }
+};
+export default connect(null, mapDispatchToProps, mergeProps)(App);

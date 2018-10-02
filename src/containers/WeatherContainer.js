@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import WeatherBox from '../components/WeatherBox';
-import getLocation, {getCurrentWeather} from '../api/index';
+import {getWeatherByCoordinate, getLocation} from '../api/index';
+import { CHANGE_INDEX_VUE } from '../store/actions/actions';
 
 /**
  *
@@ -28,7 +29,8 @@ const mapStateToProps = state => {
  */
 const mapDispatchToProps = dispatch => {
     return {
-        dispatch: dispatch,
+        goToVue: (i) => dispatch({type: CHANGE_INDEX_VUE, index: i}),
+        dispatch: dispatch
     }
 };
 
@@ -45,7 +47,7 @@ const mergeProps  = (propsFromState, propsFromDispatch, ownProps) => {
         ...propsFromState,
         ...propsFromDispatch,
         getUserPosition: () => getLocation(propsFromDispatch.dispatch),
-        getWeather: () => getCurrentWeather(currentLat, currentLong, propsFromDispatch.dispatch),
+        getWeather: () => getWeatherByCoordinate(currentLat, currentLong, propsFromDispatch.dispatch),
     }
 };
 
