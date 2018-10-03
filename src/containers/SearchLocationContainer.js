@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import SearchLocation from '../components/SearchLocation';
+import SearchLocationVue from '../components/Search/SearchLocationVue';
 import { getWeatherByCity } from '../api/index';
 
 /**
@@ -29,4 +29,4 @@ const mergeProps  = (propsFromState, propsFromDispatch, ownProps) => {
     }
 };
 
-export default connect(null, mapDispatchToProps, mergeProps)(SearchLocation)
+export default connect(null, mapDispatchToProps, mergeProps)(SearchLocationVue)

@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { UPDATE_POSITION, UPDATE_WEATHER, UPDATE_AUTOCOMPLETE } from '../store/actions/actions';
+import {UPDATE_POSITION, UPDATE_WEATHER, UPDATE_AUTOCOMPLETE, ADD_SAVED_ITEM} from '../store/actions/actions';
 
 const API_KEY = '4037fd54a5d149739a173015180210';
 
 export const getLocation = (dispatch) => {
+    console.log('trigger');
     let startPos, latPos, longPos = null;
 
     const geoSuccess = (position) => {
@@ -13,6 +14,8 @@ export const getLocation = (dispatch) => {
         console.log('currentPosition', latPos, longPos);
         dispatch({type: UPDATE_POSITION, payload: {latPos, longPos}});
         getWeatherByCoordinate(latPos, longPos, dispatch)
+        console.log('dispatch');
+
     };
 
     const geoError = (error) => {
@@ -54,16 +57,22 @@ export const getWeatherByCity = (city, dispatch) => {
 };
 
 export const getAutoComplete = (value, dispatch) => {
-        axios.get(`http://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=${value}`)
-        .then((response) => {
-            console.log(response.data);
-            dispatch({type: UPDATE_AUTOCOMPLETE, datas: response.data})
-        })
-        .catch((error) => {
-            console.log(error.message);
-            throw error;
-        });
-}
+    axios.get(`http://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=${value}`)
+    .then((response) => {
+        console.log(response.data);
+        dispatch({type: UPDATE_AUTOCOMPLETE, datas: response.data})
+    })
+    .catch((error) => {
+        console.log(error.message);
+        throw error;
+    });
+};
+
+export const addSavedItem = (city, country, dispatch) => {
+    const newItem = city;
+    localStorage.setItem('savedItems', newItem);
+    dispatch({type: ADD_SAVED_ITEM, item: newItem})
+};
 
 
 

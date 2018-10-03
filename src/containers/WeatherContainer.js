@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import WeatherBox from '../components/WeatherBox';
-import {getWeatherByCoordinate, getLocation} from '../api/index';
+import WeatherVue from '../components/Weather/WeatherVue';
+import { getWeatherByCoordinate, getLocation, addSavedItem} from '../api/index';
 import { CHANGE_INDEX_VUE } from '../store/actions/actions';
 
 /**
@@ -42,13 +42,14 @@ const mapDispatchToProps = dispatch => {
  * @returns {{getUserPosition: (function(): void)}}
  */
 const mergeProps  = (propsFromState, propsFromDispatch, ownProps) => {
-    const { currentLat, currentLong } = propsFromState;
+    const { currentLat, currentLong, currentCity, currentCountry } = propsFromState;
     return {
         ...propsFromState,
         ...propsFromDispatch,
         getUserPosition: () => getLocation(propsFromDispatch.dispatch),
         getWeather: () => getWeatherByCoordinate(currentLat, currentLong, propsFromDispatch.dispatch),
+        addSavedPosition: () => addSavedItem(currentCity, currentCountry, propsFromDispatch.dispatch),
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(WeatherBox)
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(WeatherVue)

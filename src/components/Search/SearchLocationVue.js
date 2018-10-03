@@ -1,7 +1,7 @@
 import React from 'react';
 // getWeather
 
-class SearchLocation extends React.Component {
+class SearchLocationVue extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,4 +37,4 @@ class SearchLocation extends React.Component {
     }
 }
 
-export default SearchLocation;
+export default SearchLocationVue;

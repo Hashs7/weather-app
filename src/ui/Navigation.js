@@ -1,13 +1,14 @@
 import React from 'react';
 import SwipeableViews from "react-swipeable-views";
+import SavedContainer from "../containers/SavedContainer";
 import WeatherContainer from "../containers/WeatherContainer";
 import SearchLocationContainer from "../containers/SearchLocationContainer";
-import Saved from '../components/Saved';
 
 const styles = {
     slide: {
         padding: 15,
-        minHeight: '97vh',
+        height: '100vh',
+        boxSizing: 'border-box',
         color: '#fff',
     },
     slide1: {
@@ -32,7 +33,7 @@ const Navigation = (props) => {
     return (
         <SwipeableViews enableMouseEvents index={props.vueIndex} onChangeIndex={(i) => checkIndex(i)}>
             <div style={Object.assign({}, styles.slide, styles.slide1)}>
-                <Saved />
+                <SavedContainer />
             </div>
             <div style={Object.assign({}, styles.slide, styles.slide2)}>
                 <WeatherContainer />

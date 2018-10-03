@@ -1,4 +1,4 @@
-// import { SELECT_MAILBOX } from '../actions/actions'
+import { ADD_SAVED_ITEM, REMOVE_SAVED_ITEM } from '../actions/actions'
 
 /**
  *
@@ -8,11 +8,12 @@
  */
 export const saved = (state = {}, action) => {
     switch(action.type) {
-        case 'SELECT_MAILBOX':
+        case ADD_SAVED_ITEM:
+            const newItem = action.item;
+
             return {
                 ...state,
-/*                mailbox: action,
-                userMailbox:  action.userMailbox*/
+                items: {...state.items, newItem}
             }
     }
     return state

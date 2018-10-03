@@ -7,7 +7,8 @@ import { getLocation } from './api/index';
 const WeatherApp = styled.div`
     height: 100vh;
     background-color: #6ca3ff;
-    font-family: sans-serif;
+    font-size: 62,5%;
+    font-family: 'Barlow', sans-serif;
     color: #FFF;
 `;
 

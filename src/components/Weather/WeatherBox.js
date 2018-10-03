@@ -18,7 +18,7 @@ const IconContainer = styled.div`
 
 
 
-const Weather = (props) => {
+const WeatherBox = (props) => {
     return (
         <StyledWeather>
             <IconContainer>
@@ -29,4 +29,4 @@ const Weather = (props) => {
     );
 };
 
-export default Weather;
+export default WeatherBox;

@@ -1,4 +1,4 @@
-# Weather App
+# WeatherBox App
 
 Projet Gobelins - Création d'une Web App météo
 

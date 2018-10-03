@@ -8,12 +8,13 @@ const StyledWeatherAdress = styled.div`
     color: #FFF;
 `;
 
-const StyledCity = styled.h2`
-    font-size: 20px;
+const StyledCity = styled.span`
+    display: block;
+    font-size: 2rem;
 `;
 
-const StyledCountry = styled.h3`
-    font-size: 16px;
+const StyledCountry = styled.span`
+    font-size: 1rem;
 `;
 
 const weatherAdress = (props) => {
