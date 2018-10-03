@@ -6,7 +6,7 @@ import { CHANGE_INDEX_VUE } from '../store/actions/actions'
 /**
  *
  * @param state
- * @returns {{currentCity: (string|string), currentCountry: (string|string)}}
+ * @returns {{vueIndex: *}}
  */
 const mapStateToProps = state => {
     return {

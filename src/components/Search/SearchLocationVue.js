@@ -1,11 +1,12 @@
 import React from 'react';
-// getWeather
+import SearchSuggest from './SearchSuggest';
 
 class SearchLocationVue extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            lastInputChange: new Date()
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -14,6 +15,15 @@ class SearchLocationVue extends React.Component {
 
     handleChange(event) {
         this.setState({value: event.target.value});
+        const currentDate = new Date();
+        const timeDiff = currentDate.getTime() - this.state.lastInputChange.getTime();
+
+        // Minimum of 200ms between two api call
+        if(timeDiff > 200){
+            this.setState({lastInputChange: new Date()});
+            this.props.autoCompleteHandle(event.target.value);
+        }
+        console.log(timeDiff)
     }
 
     handleSubmit(event) {
@@ -22,6 +32,17 @@ class SearchLocationVue extends React.Component {
     }
 
     render() {
+        let suggestion = null;
+        if(this.props.autoCompleteData){
+            console.log('ca passe')
+            suggestion = this.props.autoCompleteData.map(item => {
+                console.log(item);
+                return (
+                    <SearchSuggest key={item.id} name={item.name}/>
+                );
+            })
+        }
+
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
@@ -32,6 +53,7 @@ class SearchLocationVue extends React.Component {
                         onChange={this.handleChange} />
                 </label>
                 <input type="submit" value="Submit" />
+                {suggestion ? suggestion : null}
             </form>
         );
     }

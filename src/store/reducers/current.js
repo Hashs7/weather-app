@@ -1,4 +1,4 @@
-import { UPDATE_POSITION, UPDATE_WEATHER, CHANGE_INDEX_VUE, VUE_HOME } from '../actions/actions'
+import {UPDATE_POSITION, UPDATE_WEATHER, CHANGE_INDEX_VUE, VUE_HOME, UPDATE_AUTOCOMPLETE} from '../actions/actions'
 
 /**
  *
@@ -35,10 +35,17 @@ export const current = (state = {}, action) => {
             };
 
         case CHANGE_INDEX_VUE:
-            return{
+            return {
                 ...state,
                 vueIndex: action.index
             };
+
+        case UPDATE_AUTOCOMPLETE:
+            return {
+                ...state,
+                autoComplete: action.datas
+            };
+
         default:
             return state;
     }

@@ -59,7 +59,7 @@ export const getWeatherByCity = (city, dispatch) => {
 export const getAutoComplete = (value, dispatch) => {
     axios.get(`http://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=${value}`)
     .then((response) => {
-        console.log(response.data);
+        console.log('getAutoComplete', response.data);
         dispatch({type: UPDATE_AUTOCOMPLETE, datas: response.data})
     })
     .catch((error) => {
