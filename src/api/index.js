@@ -57,7 +57,9 @@ export const getWeatherByCity = (city, dispatch) => {
 };
 
 export const getAutoComplete = (value, dispatch) => {
-    axios.get(`http://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=${value}`)
+    // Normalize accents
+    const normalizeCity = value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    axios.get(`http://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=${normalizeCity}`)
     .then((response) => {
         console.log('getAutoComplete', response.data);
         dispatch({type: UPDATE_AUTOCOMPLETE, datas: response.data})
@@ -73,6 +75,8 @@ export const addSavedItem = (city, country, dispatch) => {
     localStorage.setItem('savedItems', newItem);
     dispatch({type: ADD_SAVED_ITEM, item: newItem})
 };
+
+
 
 
 

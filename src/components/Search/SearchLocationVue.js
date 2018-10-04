@@ -14,16 +14,16 @@ class SearchLocationVue extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        const inputValue = event.target.value;
+        this.setState({value: inputValue});
         const currentDate = new Date();
         const timeDiff = currentDate.getTime() - this.state.lastInputChange.getTime();
 
         // Minimum of 200ms between two api call
         if(timeDiff > 200){
             this.setState({lastInputChange: new Date()});
-            this.props.autoCompleteHandle(event.target.value);
+            this.props.autoCompleteHandle(inputValue);
         }
-        console.log(timeDiff)
     }
 
     handleSubmit(event) {
@@ -34,11 +34,9 @@ class SearchLocationVue extends React.Component {
     render() {
         let suggestion = null;
         if(this.props.autoCompleteData){
-            console.log('ca passe')
             suggestion = this.props.autoCompleteData.map(item => {
-                console.log(item);
                 return (
-                    <SearchSuggest key={item.id} name={item.name}/>
+                    <SearchSuggest key={item.id} name={item.name} url={item.url} click={(url) => this.props.getWeather(url)}/>
                 );
             })
         }
