@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-// const imgPath = '../assets/img/';
 
 const StyledWeather = styled.div`
     text-align: center;
-    color: #FFF;
 `;
 
 const WeatherTitle = styled.span`

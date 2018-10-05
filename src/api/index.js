@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {UPDATE_POSITION, UPDATE_WEATHER, UPDATE_AUTOCOMPLETE, ADD_SAVED_ITEM} from '../store/actions/actions';
+import { UPDATE_POSITION, UPDATE_WEATHER, UPDATE_AUTOCOMPLETE, UPDATE_FORECAST, ADD_SAVED_ITEM } from '../store/actions/actions';
 
 const API_KEY = '4037fd54a5d149739a173015180210';
 
@@ -13,7 +13,7 @@ export const getLocation = (dispatch) => {
         longPos = startPos.coords.longitude;
         console.log('currentPosition', latPos, longPos);
         dispatch({type: UPDATE_POSITION, payload: {latPos, longPos}});
-        getWeatherByCoordinate(latPos, longPos, dispatch)
+        getWeatherByCoordinate(latPos, longPos, dispatch);
         console.log('dispatch');
 
     };
@@ -34,7 +34,7 @@ export const getWeatherByCoordinate = (lat, long, dispatch) => {
     axios.get(`http://api.apixu.com/v1/current.json?key=${API_KEY}&lang=fr&q=${lat},${long}`)
         .then((response) => {
             console.log(response.data);
-            dispatch({type: UPDATE_WEATHER, datas: response.data})
+            dispatch({type: UPDATE_WEATHER, data: response.data})
         })
         .catch((error) => {
             console.log(error.message);
@@ -48,12 +48,14 @@ export const getWeatherByCity = (city, dispatch) => {
     axios.get(`http://api.apixu.com/v1/current.json?key=${API_KEY}&lang=fr&q=${normalizeCity}`)
         .then((response) => {
             console.log(response.data);
-            dispatch({type: UPDATE_WEATHER, datas: response.data})
+            dispatch({type: UPDATE_WEATHER, data: response.data})
         })
         .catch((error) => {
             console.log(error.message);
             throw error;
         });
+
+    getForecast(city, dispatch);
 };
 
 export const getAutoComplete = (value, dispatch) => {
@@ -62,7 +64,7 @@ export const getAutoComplete = (value, dispatch) => {
     axios.get(`http://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=${normalizeCity}`)
     .then((response) => {
         console.log('getAutoComplete', response.data);
-        dispatch({type: UPDATE_AUTOCOMPLETE, datas: response.data})
+        dispatch({type: UPDATE_AUTOCOMPLETE, data: response.data})
     })
     .catch((error) => {
         console.log(error.message);
@@ -70,14 +72,21 @@ export const getAutoComplete = (value, dispatch) => {
     });
 };
 
+export const getForecast = (city, dispatch) => {
+    axios.get(`http://api.apixu.com/v1/forecast.json?key=${API_KEY}&lang=fr&q=${city}&days=5`)
+        .then((response) => {
+            console.log('getForecast', response.data);
+            dispatch({type: UPDATE_FORECAST, data: response.data})
+        })
+        .catch((error) => {
+            console.log(error.message);
+            throw error;
+        });
+    console.log('forecast')
+};
+
 export const addSavedItem = (city, country, dispatch) => {
     const newItem = city;
     localStorage.setItem('savedItems', newItem);
     dispatch({type: ADD_SAVED_ITEM, item: newItem})
 };
-
-
-
-
-
-export default getLocation;

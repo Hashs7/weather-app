@@ -7,7 +7,7 @@ import { CHANGE_INDEX_VUE } from '../store/actions/actions';
 /**
  *
  * @param state
- * @returns {{currentCity: (string|string), currentCountry: (string|string)}}
+ * @returns {{currentCity: (string|*|string), currentCountry: (string|string), currentLat: string, currentLong: string, currentConditionName: (*|string), currentTemp: *, currentHumidity, currentImg: (string|string), currentWind: *, currentTempFeel: *}}
  */
 const mapStateToProps = state => {
     return {
@@ -19,6 +19,7 @@ const mapStateToProps = state => {
         currentTemp             : state.current.temperature,
         currentHumidity         : state.current.humidity,
         currentImg              : state.current.icon,
+        currentWind             : state.current.wind,
     }
 };
 

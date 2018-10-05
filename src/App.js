@@ -9,7 +9,7 @@ const WeatherApp = styled.div`
     background-color: #6ca3ff;
     font-size: 62,5%;
     font-family: 'Barlow', sans-serif;
-    color: #FFF;
+    color: #3C3440;
 `;
 
 class App extends Component {

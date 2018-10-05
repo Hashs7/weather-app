@@ -1,5 +1,17 @@
 import React from 'react';
 import SearchSuggest from './SearchSuggest';
+import styled from 'styled-components';
+
+const StyledInput = styled.input`
+    width: 100%;
+    height: 35px;
+    padding: 0 20px;
+    line-height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #3C3440;
+    border-radius: 40px;
+`;
+
 
 class SearchLocationVue extends React.Component {
     constructor(props) {
@@ -43,13 +55,11 @@ class SearchLocationVue extends React.Component {
 
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>
-                    Votre ville:
-                    <input
-                        type="text"
-                        value={this.state.value}
-                        onChange={this.handleChange} />
-                </label>
+                <StyledInput
+                    type="text"
+                    placeholder="Rechercher"
+                    value={this.state.value}
+                    onChange={this.handleChange} />
                 <input type="submit" value="Submit" />
                 {suggestion ? suggestion : null}
             </form>

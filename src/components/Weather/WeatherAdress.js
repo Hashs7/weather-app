@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 const StyledWeatherAdress = styled.div`
     width: 100%;
-    height: 100px;
     text-align: center;
-    color: #FFF;
 `;
 
 const StyledCity = styled.span`

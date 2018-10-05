@@ -1,4 +1,4 @@
-import {UPDATE_POSITION, UPDATE_WEATHER, CHANGE_INDEX_VUE, VUE_HOME, UPDATE_AUTOCOMPLETE} from '../actions/actions'
+import {UPDATE_POSITION, UPDATE_WEATHER, CHANGE_INDEX_VUE, VUE_HOME, UPDATE_AUTOCOMPLETE, UPDATE_FORECAST} from '../actions/actions'
 
 /**
  *
@@ -16,12 +16,13 @@ export const current = (state = {}, action) => {
             };
 
         case UPDATE_WEATHER:
-            const locationName      = action.datas.location.name;
-            const locationCountry   = action.datas.location.country;
-            const currentImg        = action.datas.current.condition.icon;
-            const currentCondition  = action.datas.current.condition.text;
-            const currentTemp       = action.datas.current.temp_c;
-            const currentHumidity   = action.datas.current.humidity;
+            const locationName      = action.data.location.name;
+            const locationCountry   = action.data.location.country;
+            const currentImg        = action.data.current.condition.icon;
+            const currentCondition  = action.data.current.condition.text;
+            const currentTemp       = action.data.current.temp_c;
+            const currentWind       = action.data.current.wind_kph;
+            const currentHumidity   = action.data.current.humidity;
 
             return {
                 ...state,
@@ -31,6 +32,7 @@ export const current = (state = {}, action) => {
                 temperature: currentTemp,
                 humidity: currentHumidity,
                 icon: currentImg,
+                wind: currentWind,
                 vueIndex: VUE_HOME
             };
 
@@ -43,7 +45,13 @@ export const current = (state = {}, action) => {
         case UPDATE_AUTOCOMPLETE:
             return {
                 ...state,
-                autoComplete: action.datas
+                autoComplete: action.data
+            };
+
+        case UPDATE_FORECAST:
+            return {
+                ...state,
+                forecast: action.data
             };
 
         default:

@@ -4,6 +4,7 @@ import WeatherAdress from "./WeatherAdress";
 import WeatherInfos from "./WeatherInfos";
 import WeatherBox from "./WeatherBox";
 import { VUE_SEARCH, VUE_SAVED } from "../../store/actions/actions";
+import IconSvg from "../../ui/IconSvg";
 
 
 const StyledWeatherVue = styled.div`
@@ -14,8 +15,9 @@ const StyledWeatherVue = styled.div`
 `;
 
 const StyledWeatherContainer = styled.div`
-    margin: auto;
     display: block;
+    margin: auto;
+    width: 100%
 `;
 
 const StyledVueChanger = styled.div`
@@ -35,21 +37,22 @@ const StyledWeatherAction = styled(StyledVueChanger)`
 export const weatherVue = (props) => (
     <StyledWeatherVue>
         <StyledVueChanger>
-            <button onClick={() => props.goToVue(VUE_SAVED)}>favoris</button>
-            <button onClick={() => props.goToVue(VUE_SEARCH)}>rechercher</button>
+            <IconSvg name="saved" click={() => props.goToVue(VUE_SAVED)}/>
+            <IconSvg name="search" click={() => props.goToVue(VUE_SEARCH)}/>
         </StyledVueChanger>
         <StyledWeatherContainer>
             <WeatherAdress city={props.currentCity} country={props.currentCountry} />
             <WeatherBox
                 name={props.currentConditionName}
-                imgSrc={props.currentImg} />
+                imgSrc={props.currentImg}/>
             <WeatherInfos
-                temp={props.currentTemp}
-                humidity={props.currentHumidity}/>
+                wind={props.currentWind}
+                humidity={props.currentHumidity}
+                temp={props.currentTemp}/>
         </StyledWeatherContainer>
         <StyledWeatherAction>
-            <button onClick={props.getUserPosition}>Me localiser</button>
-            <button onClick={props.addSavedPosition}>Sauvegarder</button>
+            <IconSvg name="map" click={props.getUserPosition}/>
+            <IconSvg name="heart" click={props.addSavedPosition}/>
         </StyledWeatherAction>
     </StyledWeatherVue>
 );

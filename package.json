@@ -93,6 +93,7 @@
   },
   "devDependencies": {
     "axios": "^0.18.0",
+    "react-inlinesvg": "^0.8.1",
     "react-redux": "^5.0.7",
     "react-swipeable-views": "^0.13.0",
     "redux": "^4.0.0",

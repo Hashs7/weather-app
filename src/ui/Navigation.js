@@ -9,16 +9,16 @@ const styles = {
         padding: 15,
         height: '100vh',
         boxSizing: 'border-box',
-        color: '#fff',
+        color: '#3C3440',
     },
     slide1: {
-        backgroundColor: '#FEA900',
+        backgroundColor: '#FEFDFE',
     },
     slide2: {
-        backgroundColor: '#B3DC4A',
+        backgroundColor: '#FEFDFE',
     },
     slide3: {
-        backgroundColor: '#6AC0FF',
+        backgroundColor: '#FEFDFE',
     },
 };
 
