@@ -20,6 +20,7 @@ const mapStateToProps = state => {
         currentHumidity         : state.current.humidity,
         currentImg              : state.current.icon,
         currentWind             : state.current.wind,
+        currentForecast         : state.current.forecast
     }
 };
 

@@ -23,6 +23,7 @@ export const current = (state = {}, action) => {
             const currentTemp       = action.data.current.temp_c;
             const currentWind       = action.data.current.wind_kph;
             const currentHumidity   = action.data.current.humidity;
+            const currentForecast   = action.data.forecast.forecastday;
 
             return {
                 ...state,
@@ -33,7 +34,8 @@ export const current = (state = {}, action) => {
                 humidity: currentHumidity,
                 icon: currentImg,
                 wind: currentWind,
-                vueIndex: VUE_HOME
+                vueIndex: VUE_HOME,
+                forecast: currentForecast
             };
 
         case CHANGE_INDEX_VUE:
@@ -51,7 +53,6 @@ export const current = (state = {}, action) => {
         case UPDATE_FORECAST:
             return {
                 ...state,
-                forecast: action.data
             };
 
         default:

@@ -4,6 +4,7 @@ import WeatherAdress from "./WeatherAdress";
 import WeatherInfos from "./WeatherInfos";
 import WeatherBox from "./WeatherBox";
 import { VUE_SEARCH, VUE_SAVED } from "../../store/actions/actions";
+import WeatherForecast from './WeatherForecast';
 import IconSvg from "../../ui/IconSvg";
 
 
@@ -49,7 +50,9 @@ export const weatherVue = (props) => (
                 wind={props.currentWind}
                 humidity={props.currentHumidity}
                 temp={props.currentTemp}/>
+            <WeatherForecast prevision={props.currentForecast}/>
         </StyledWeatherContainer>
+
         <StyledWeatherAction>
             <IconSvg name="map" click={props.getUserPosition}/>
             <IconSvg name="heart" click={props.addSavedPosition}/>

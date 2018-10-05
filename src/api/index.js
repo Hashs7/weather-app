@@ -31,7 +31,7 @@ export const getLocation = (dispatch) => {
 };
 
 export const getWeatherByCoordinate = (lat, long, dispatch) => {
-    axios.get(`http://api.apixu.com/v1/current.json?key=${API_KEY}&lang=fr&q=${lat},${long}`)
+    axios.get(`http://api.apixu.com/v1/forecast.json?key=${API_KEY}&lang=fr&days=5&q=${lat},${long}`)
         .then((response) => {
             console.log(response.data);
             dispatch({type: UPDATE_WEATHER, data: response.data})
@@ -45,7 +45,7 @@ export const getWeatherByCoordinate = (lat, long, dispatch) => {
 export const getWeatherByCity = (city, dispatch) => {
     // Normalize accents
     const normalizeCity = city.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-    axios.get(`http://api.apixu.com/v1/current.json?key=${API_KEY}&lang=fr&q=${normalizeCity}`)
+    axios.get(`http://api.apixu.com/v1/forecast.json?key=${API_KEY}&lang=fr&days=5&&q=${normalizeCity}`)
         .then((response) => {
             console.log(response.data);
             dispatch({type: UPDATE_WEATHER, data: response.data})
@@ -55,7 +55,6 @@ export const getWeatherByCity = (city, dispatch) => {
             throw error;
         });
 
-    getForecast(city, dispatch);
 };
 
 export const getAutoComplete = (value, dispatch) => {
@@ -70,19 +69,6 @@ export const getAutoComplete = (value, dispatch) => {
         console.log(error.message);
         throw error;
     });
-};
-
-export const getForecast = (city, dispatch) => {
-    axios.get(`http://api.apixu.com/v1/forecast.json?key=${API_KEY}&lang=fr&q=${city}&days=5`)
-        .then((response) => {
-            console.log('getForecast', response.data);
-            dispatch({type: UPDATE_FORECAST, data: response.data})
-        })
-        .catch((error) => {
-            console.log(error.message);
-            throw error;
-        });
-    console.log('forecast')
 };
 
 export const addSavedItem = (city, country, dispatch) => {
