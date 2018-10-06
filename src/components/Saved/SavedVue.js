@@ -8,13 +8,16 @@ const StyledSavedContainer = styled.div`
 `;
 
 
-const SavedVue = ({ allSavedCity }) => {
+const SavedVue = ({ allSavedCity, deleteSavedItem }) => {
     let displaySavedBox = null;
+    console.log('reload');
     if(allSavedCity){
         displaySavedBox = allSavedCity.map((item, i) => (
+            console.log('regenerate'),
             <SavedBox
                 key={i}
                 city={item}
+                click={() => deleteSavedItem(item)}
                 region=""
                 country=""/>
         ));

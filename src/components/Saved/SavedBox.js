@@ -19,12 +19,12 @@ const SubTitle = styled.span`
     font-size: 14px;
 `;
 
-const SavedBox = ({ city, region, country, deleteSavedItem }) => {
+const SavedBox = ({ city, region, country, deleteSavedItem, click }) => {
     return (
         <StyledSavedBox>
             <Title>{city}</Title>
             <SubTitle>{region}, {country}</SubTitle>
-            <button>Supprimer</button>
+            <button onClick={click}>Supprimer</button>
         </StyledSavedBox>
     );
 };
