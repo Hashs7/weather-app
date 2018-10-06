@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import SVG from 'react-inlinesvg';
+import { ICON_LIST } from '../../store/actions/actions';
 
 const StyledWeather = styled.div`
     text-align: center;
@@ -10,19 +12,21 @@ const WeatherTitle = styled.span`
 `;
 
 const IconContainer = styled.div`
-    width: 100px;
-    margin: 10px auto;
+    width: 140px;
+    margin: 0 auto;
 `;
 
 
 
-const WeatherBox = (props) => {
+const WeatherBox = ({imgCode, name}) => {
+    const iconPath = `./assets/img/weather/${ICON_LIST[imgCode]}.svg`;
     return (
         <StyledWeather>
             <IconContainer>
-                <img src={props.imgSrc} alt=""/>
+                <SVG src={iconPath} style={{width: '100%', height: '100%'}}>
+                </SVG>
             </IconContainer>
-            <WeatherTitle>{props.name}</WeatherTitle>
+            <WeatherTitle>{name}</WeatherTitle>
         </StyledWeather>
     );
 };

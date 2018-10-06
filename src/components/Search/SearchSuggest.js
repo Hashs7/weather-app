@@ -8,7 +8,8 @@ const StyledSearchSuggest = styled.div`
     box-sizing: border-box;
     margin: 10px auto;
     border-radius: 8px;
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(253,193,104,1) 0%, rgba(251,128,128,1) 90% );
+    color: #fff;
+    background-image: radial-gradient( circle farthest-corner at 12.3% 30.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 120.2% );
 `;
 
 const SearchSuggest = (props) => {

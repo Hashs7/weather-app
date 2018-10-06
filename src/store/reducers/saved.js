@@ -9,11 +9,16 @@ import { ADD_SAVED_ITEM, REMOVE_SAVED_ITEM } from '../actions/actions'
 export const saved = (state = {}, action) => {
     switch(action.type) {
         case ADD_SAVED_ITEM:
-            const newItem = action.item;
-
+            console.log(state);
+            if(!state.items){
+                return {
+                    ...state,
+                    items: [action.item]
+                }
+            }
             return {
                 ...state,
-                items: {...state.items, newItem}
+                items: [...state.items, action.item]
             }
     }
     return state

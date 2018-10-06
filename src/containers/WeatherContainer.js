@@ -18,7 +18,7 @@ const mapStateToProps = state => {
         currentConditionName    : state.current.conditionName,
         currentTemp             : state.current.temperature,
         currentHumidity         : state.current.humidity,
-        currentImg              : state.current.icon,
+        currentImgCode          : state.current.icon,
         currentWind             : state.current.wind,
         currentForecast         : state.current.forecast
     }

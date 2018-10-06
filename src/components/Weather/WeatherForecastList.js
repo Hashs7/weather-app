@@ -2,14 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import WeatherForecastItem from './WeatherForecastItem'
 
+const StyledForecast = styled.div`
+    width: 100%;
+    margin-top: 50px;
+`;
 
-const WeatherForecast = ({ prevision }) => {
-    console.log('prevision', prevision);
+const WeatherForecastList = ({ prevision }) => {
     let allItems = null;
     if(prevision){
         allItems = Object.keys(prevision).map(key => {
             const item = prevision[key];
-            console.log(prevision[key]);
             if(key === '0'){
                 return;
             }
@@ -21,10 +23,10 @@ const WeatherForecast = ({ prevision }) => {
 
 
     return (
-        <div styled={{width: '100%'}}>
+        <StyledForecast>
             {allItems ? allItems : null}
-        </div>
+        </StyledForecast>
     );
 };
 
-export default WeatherForecast;
+export default WeatherForecastList;

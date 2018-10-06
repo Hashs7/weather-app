@@ -4,9 +4,8 @@ import WeatherAdress from "./WeatherAdress";
 import WeatherInfos from "./WeatherInfos";
 import WeatherBox from "./WeatherBox";
 import { VUE_SEARCH, VUE_SAVED } from "../../store/actions/actions";
-import WeatherForecast from './WeatherForecast';
+import WeatherForecast from './WeatherForecastList';
 import IconSvg from "../../ui/IconSvg";
-
 
 const StyledWeatherVue = styled.div`
     position: relative;
@@ -33,23 +32,26 @@ const StyledWeatherAction = styled(StyledVueChanger)`
     bottom: 0;
 `;
 
-
-
 export const weatherVue = (props) => (
     <StyledWeatherVue>
+
         <StyledVueChanger>
             <IconSvg name="saved" click={() => props.goToVue(VUE_SAVED)}/>
             <IconSvg name="search" click={() => props.goToVue(VUE_SEARCH)}/>
         </StyledVueChanger>
+
         <StyledWeatherContainer>
             <WeatherAdress city={props.currentCity} country={props.currentCountry} />
+
             <WeatherBox
                 name={props.currentConditionName}
-                imgSrc={props.currentImg}/>
+                imgCode={props.currentImgCode}/>
+
             <WeatherInfos
                 wind={props.currentWind}
                 humidity={props.currentHumidity}
                 temp={props.currentTemp}/>
+
             <WeatherForecast prevision={props.currentForecast}/>
         </StyledWeatherContainer>
 
@@ -57,6 +59,7 @@ export const weatherVue = (props) => (
             <IconSvg name="map" click={props.getUserPosition}/>
             <IconSvg name="heart" click={props.addSavedPosition}/>
         </StyledWeatherAction>
+
     </StyledWeatherVue>
 );
 

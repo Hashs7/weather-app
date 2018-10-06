@@ -4,7 +4,7 @@ const days = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 
 const StyledItem = styled.div`
     display: inline-block;
-    width: 25%;
+    width: 20%;
     text-align: center;
 `;
 
@@ -19,12 +19,13 @@ const StyledTemp = styled(StyledDay)`
 const WeatherForecastItem = ({ day, weather, temp }) => {
     const dayIndex = new Date(day).getDay();
     const dayName = days[dayIndex];
+    const tempFloor = Math.floor(temp);
 
     return (
         <StyledItem>
             <StyledDay>{dayName}</StyledDay>
             <span>{weather}</span>
-            <StyledTemp>{temp}°C</StyledTemp>
+            <StyledTemp>{tempFloor}°C</StyledTemp>
         </StyledItem>
     );
 };

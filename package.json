@@ -97,6 +97,7 @@
     "react-redux": "^5.0.7",
     "react-swipeable-views": "^0.13.0",
     "redux": "^4.0.0",
+    "redux-localstorage": "^1.0.0-rc5",
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.4.9"
   }

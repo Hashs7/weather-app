@@ -18,7 +18,7 @@ export const current = (state = {}, action) => {
         case UPDATE_WEATHER:
             const locationName      = action.data.location.name;
             const locationCountry   = action.data.location.country;
-            const currentImg        = action.data.current.condition.icon;
+            const currentCode       = action.data.current.condition.code;
             const currentCondition  = action.data.current.condition.text;
             const currentTemp       = action.data.current.temp_c;
             const currentWind       = action.data.current.wind_kph;
@@ -32,7 +32,7 @@ export const current = (state = {}, action) => {
                 conditionName: currentCondition,
                 temperature: currentTemp,
                 humidity: currentHumidity,
-                icon: currentImg,
+                icon: currentCode,
                 wind: currentWind,
                 vueIndex: VUE_HOME,
                 forecast: currentForecast

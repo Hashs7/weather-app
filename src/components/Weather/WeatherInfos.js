@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledWeatherInfos = styled.div`
     display: flex;
     width: 80%;
-    margin: 10px auto 0 auto;
+    margin: 20px auto 0 auto;
     
 `;
 
@@ -32,21 +32,21 @@ const StyledInfoDesc = styled.span`
 const WeatherInfos = (props) => {
     return (
         <StyledWeatherInfos>
-            {props?
+            {props.temp ?
                 <StyledInfoContainer>
                     <StyledInfo>{props.temp}°C</StyledInfo>
                     <StyledInfoDesc>Température</StyledInfoDesc>
                 </StyledInfoContainer>
                 :  null
             }
-            {props ?
+            {props.humidity ?
                 <StyledInfoContainer>
                     <StyledInfo>{props.humidity}%</StyledInfo>
                     <StyledInfoDesc>Humidité</StyledInfoDesc>
                 </StyledInfoContainer>
                 :  null
             }
-            {props ?
+            {props.wind ?
                 <StyledInfoContainer>
                     <StyledInfo>{props.wind} km/h</StyledInfo>
                     <StyledInfoDesc>Vent</StyledInfoDesc>

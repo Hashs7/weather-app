@@ -11,6 +11,7 @@ import {getWeatherByCoordinate, getLocation} from '../api/index';
 const mapStateToProps = state => {
     return {
         currentCity : state.current.city,
+        allSavedCity : state.saved.items
     }
 };
 
