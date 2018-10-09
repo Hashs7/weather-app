@@ -19,6 +19,8 @@ export const CHANGE_INDEX_VUE = 'CHANGE_INDEX_VUE';
 export const ADD_SAVED_ITEM = 'ADD_SAVED_ITEM';
 export const REMOVE_SAVED_ITEM = 'REMOVE_SAVED_ITEM';
 
+
+
 export const ICON_LIST = {
     1000: "sun",
     1003: "sun_cloud",

@@ -9,10 +9,10 @@ import generateInitialState from './store/initState';
 const run = () => {
     let store = configureStore(generateInitialState());
     ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+    registerServiceWorker();
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     run();
-    registerServiceWorker();
 });
 

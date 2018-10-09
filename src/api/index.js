@@ -4,9 +4,18 @@ import { UPDATE_POSITION, UPDATE_WEATHER, UPDATE_AUTOCOMPLETE, UPDATE_FORECAST, 
 const API_KEY = '4037fd54a5d149739a173015180210';
 
 export const getLocation = (dispatch) => {
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    console.log('trigger current pos');
     let startPos, latPos, longPos = null;
 
     const geoSuccess = (position) => {
+        console.log('success pos');
+
         startPos = position;
         latPos = startPos.coords.latitude;
         longPos = startPos.coords.longitude;
@@ -24,7 +33,7 @@ export const getLocation = (dispatch) => {
         }
     };
 
-    navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, options);
 };
 
 export const getWeatherByCoordinate = (lat, long, dispatch) => {
@@ -73,6 +82,5 @@ export const getAutoComplete = (value, dispatch) => {
 
 export const addSavedItem = (city, country, dispatch) => {
     const newItem = city;
-    localStorage.setItem('savedItems', newItem);
     dispatch({type: ADD_SAVED_ITEM, item: newItem})
 };

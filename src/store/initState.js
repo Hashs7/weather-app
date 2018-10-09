@@ -2,6 +2,11 @@
 import { VUE_HOME } from './actions/actions'
 
 export const generateInitialState = () => {
+    console.log(localStorage);
+
+
+    console.log('localstorage')
+
     return {
         current: {
             vueIndex: VUE_HOME,
@@ -11,6 +16,7 @@ export const generateInitialState = () => {
             date: '',
             lat: '',
             long: '',
+            isPosition: false
         }
     };
 };

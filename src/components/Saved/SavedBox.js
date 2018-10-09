@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {getWeatherByCity} from "../../api";
 
 const StyledSavedBox = styled.div`
     width: 95%;
@@ -19,12 +20,12 @@ const SubTitle = styled.span`
     font-size: 14px;
 `;
 
-const SavedBox = ({ city, region, country, deleteSavedItem, click }) => {
+const SavedBox = ({ city, region, country, deleteSavedItem, removeHandle, getWeather }) => {
     return (
-        <StyledSavedBox>
+        <StyledSavedBox onClick={getWeather}>
             <Title>{city}</Title>
             <SubTitle>{region}, {country}</SubTitle>
-            <button onClick={click}>Supprimer</button>
+            <button onClick={removeHandle}>Supprimer</button>
         </StyledSavedBox>
     );
 };

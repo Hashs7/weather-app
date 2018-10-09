@@ -6,7 +6,7 @@ import { getLocation } from './api/index';
 
 const WeatherApp = styled.div`
     height: 100vh;
-    background-color: #6ca3ff;
+    background-color: #fff;
     font-size: 62,5%;
     font-family: 'Barlow', sans-serif;
     color: #3C3440;
@@ -50,4 +50,5 @@ const mergeProps  = (propsFromState, propsFromDispatch, ownProps) => {
         getUserPosition: () => getLocation(propsFromDispatch.dispatch),
     }
 };
+
 export default connect(null, mapDispatchToProps, mergeProps)(App);

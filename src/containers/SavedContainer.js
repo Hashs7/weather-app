@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import SavedVue from '../components/Saved/SavedVue';
-import {getWeatherByCoordinate, getLocation} from '../api/index';
+import {getWeatherByCoordinate, getLocation, getWeatherByCity} from '../api/index';
 import {REMOVE_SAVED_ITEM} from "../store/actions/actions";
 
 /**
@@ -24,6 +24,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         dispatch: dispatch,
+        getWeather: (city) => getWeatherByCity(city, dispatch),
         deleteSavedItem: (item) => dispatch({type: REMOVE_SAVED_ITEM, item})
     }
 };

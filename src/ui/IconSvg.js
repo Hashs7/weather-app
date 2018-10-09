@@ -10,6 +10,10 @@ const StyledIconSvg = styled.div`
 const IconSvg = ({ name, click }) => {
     const path = `./assets/img/${name}.svg`;
 
+    const focusItem = () => {
+
+    }
+
     return (
         <StyledIconSvg onClick={click}>
             <SVG src={path} alt="" style={{width: '100%', height: '100%'}}>

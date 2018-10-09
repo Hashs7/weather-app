@@ -8,7 +8,7 @@ const StyledSavedContainer = styled.div`
 `;
 
 
-const SavedVue = ({ allSavedCity, deleteSavedItem }) => {
+const SavedVue = ({ allSavedCity, deleteSavedItem, getWeather }) => {
     let displaySavedBox = null;
     console.log('reload');
     if(allSavedCity){
@@ -17,7 +17,8 @@ const SavedVue = ({ allSavedCity, deleteSavedItem }) => {
             <SavedBox
                 key={i}
                 city={item}
-                click={() => deleteSavedItem(item)}
+                getWeather={() => getWeather(item)}
+                removeHandle={() => deleteSavedItem(item)}
                 region=""
                 country=""/>
         ));
