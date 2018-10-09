@@ -10,10 +10,9 @@ const StyledSavedContainer = styled.div`
 
 const SavedVue = ({ allSavedCity, deleteSavedItem, getWeather }) => {
     let displaySavedBox = null;
-    console.log('reload');
+
     if(allSavedCity){
         displaySavedBox = allSavedCity.map((item, i) => (
-            console.log('regenerate'),
             <SavedBox
                 key={i}
                 city={item}

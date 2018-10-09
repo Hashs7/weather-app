@@ -1,4 +1,10 @@
-import {UPDATE_POSITION, UPDATE_WEATHER, CHANGE_INDEX_VUE, VUE_HOME, UPDATE_AUTOCOMPLETE, UPDATE_FORECAST} from '../actions/actions'
+import {
+    UPDATE_POSITION,
+    UPDATE_WEATHER,
+    CHANGE_INDEX_VUE,
+    VUE_HOME,
+    UPDATE_AUTOCOMPLETE
+} from '../actions/actions'
 
 /**
  *
@@ -16,26 +22,17 @@ export const current = (state = {}, action) => {
             };
 
         case UPDATE_WEATHER:
-            const locationName      = action.data.location.name;
-            const locationCountry   = action.data.location.country;
-            const currentCode       = action.data.current.condition.code;
-            const currentCondition  = action.data.current.condition.text;
-            const currentTemp       = action.data.current.temp_c;
-            const currentWind       = action.data.current.wind_kph;
-            const currentHumidity   = action.data.current.humidity;
-            const currentForecast   = action.data.forecast.forecastday;
-
             return {
                 ...state,
-                city: locationName,
-                country: locationCountry,
-                conditionName: currentCondition,
-                temperature: currentTemp,
-                humidity: currentHumidity,
-                icon: currentCode,
-                wind: currentWind,
+                city: action.data.location.name,
+                country: action.data.location.country,
+                conditionName: action.data.current.condition.text,
+                temperature: action.data.current.temp_c,
+                humidity: action.data.current.humidity,
+                icon: action.data.current.condition.code,
+                wind: action.data.current.wind_kph,
                 vueIndex: VUE_HOME,
-                forecast: currentForecast
+                forecast: action.data.forecast.forecastday
             };
 
         case CHANGE_INDEX_VUE:
@@ -49,16 +46,9 @@ export const current = (state = {}, action) => {
                 ...state,
                 autoComplete: action.data
             };
-
-        case UPDATE_FORECAST:
-            return {
-                ...state,
-            };
-
         default:
             return state;
     }
-    return state
 };
 
 export default current;

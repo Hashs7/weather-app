@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import {getWeatherByCity} from "../../api";
 
 const StyledSavedBox = styled.div`
     width: 95%;
     margin: 10px auto;
     height: 50px;
-    background-color: #5F6AF4;
-    border-radius: 8px;
     padding: 10px;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #5F6AF4;
 `;
 
 const Title = styled.span`
@@ -21,11 +21,15 @@ const SubTitle = styled.span`
 `;
 
 const SavedBox = ({ city, region, country, deleteSavedItem, removeHandle, getWeather }) => {
+    const clickHandler = (e) => {
+        e.stopPropagation();
+        removeHandle();
+    };
     return (
         <StyledSavedBox onClick={getWeather}>
             <Title>{city}</Title>
             <SubTitle>{region}, {country}</SubTitle>
-            <button onClick={removeHandle}>Supprimer</button>
+            <button onClick={clickHandler}>Supprimer</button>
         </StyledSavedBox>
     );
 };

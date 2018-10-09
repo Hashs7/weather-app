@@ -17,13 +17,12 @@ const mapStateToProps = state => {
 /**
  *
  * @param dispatch
- * @returns {{dispatch: *}}
+ * @returns {{changeIndexHandle: (function(*=): *)}}
  */
 const mapDispatchToProps = dispatch => {
     return {
         changeIndexHandle: (i) => dispatch({type: CHANGE_INDEX_VUE, index: i}),
     }
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

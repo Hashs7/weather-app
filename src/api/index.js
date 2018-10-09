@@ -1,25 +1,11 @@
 import axios from 'axios';
-import { UPDATE_POSITION, UPDATE_WEATHER, UPDATE_AUTOCOMPLETE, UPDATE_FORECAST, ADD_SAVED_ITEM } from '../store/actions/actions';
-
-const API_KEY = '4037fd54a5d149739a173015180210';
+import { UPDATE_POSITION, UPDATE_WEATHER, UPDATE_AUTOCOMPLETE, REMOVE_SAVED_ITEM, ADD_SAVED_ITEM } from '../store/actions/actions';
+import { API_URL_FORECAST, API_URL_SEARCH } from "../constantes";
 
 export const getLocation = (dispatch) => {
-    const options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
-
-    console.log('trigger current pos');
-    let startPos, latPos, longPos = null;
-
     const geoSuccess = (position) => {
-        console.log('success pos');
-
-        startPos = position;
-        latPos = startPos.coords.latitude;
-        longPos = startPos.coords.longitude;
-        console.log('currentPosition', latPos, longPos);
+        const latPos = position.coords.latitude;
+        const longPos = position.coords.longitude;
         dispatch({type: UPDATE_POSITION, payload: {latPos, longPos}});
         getWeatherByCoordinate(latPos, longPos, dispatch);
     };
@@ -28,16 +14,22 @@ export const getLocation = (dispatch) => {
         switch(error.code) {
             case error.TIMEOUT:
                 // The user didn't accept the callout
-                console.log('he said NOOOO');
+                console.log('User said NOOOO');
                 break;
         }
+    };
+
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
     };
 
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, options);
 };
 
 export const getWeatherByCoordinate = (lat, long, dispatch) => {
-    axios.get(`http://api.apixu.com/v1/forecast.json?key=${API_KEY}&lang=fr&days=6&q=${lat},${long}`)
+    axios.get(API_URL_FORECAST + lat + ',' + long)
         .then((response) => {
             console.log(response.data);
             dispatch({type: UPDATE_WEATHER, data: response.data})
@@ -49,38 +41,39 @@ export const getWeatherByCoordinate = (lat, long, dispatch) => {
 };
 
 export const getWeatherByCity = (city, dispatch) => {
-    if(city){
-        // Normalize accents
-        const normalizeCity = city.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-        axios.get(`http://api.apixu.com/v1/forecast.json?key=${API_KEY}&lang=fr&days=6&&q=${normalizeCity}`)
-            .then((response) => {
-                console.log(response.data);
-                dispatch({type: UPDATE_WEATHER, data: response.data})
-            })
-            .catch((error) => {
-                console.log(error.message);
-                throw error;
-            });
-    }
+    if (!city){return}
+    // Normalize accents
+    const normalizeCity = city.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    axios.get(API_URL_FORECAST + normalizeCity)
+        .then((response) => {
+            console.log(response.data);
+            dispatch({type: UPDATE_WEATHER, data: response.data})
+        })
+        .catch((error) => {
+            console.log(error.message);
+            throw error;
+        });
 };
 
 export const getAutoComplete = (value, dispatch) => {
-    if(value){
-        // Normalize accents
-        const normalizeCity = value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-        axios.get(`http://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=${normalizeCity}`)
-            .then((response) => {
-                console.log('getAutoComplete', response.data);
-                dispatch({type: UPDATE_AUTOCOMPLETE, data: response.data})
-            })
-            .catch((error) => {
-                console.log(error.message);
-                throw error;
-            });
-    }
+    if (!value) { return }
+    // Normalize accents
+    const normalizeCity = value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    axios.get(API_URL_SEARCH + normalizeCity)
+        .then((response) => {
+            console.log('getAutoComplete', response.data);
+            dispatch({type: UPDATE_AUTOCOMPLETE, data: response.data})
+        })
+        .catch((error) => {
+            console.log(error.message);
+            throw error;
+        });
 };
 
-export const addSavedItem = (city, country, dispatch) => {
-    const newItem = city;
-    dispatch({type: ADD_SAVED_ITEM, item: newItem})
+export const addSavedItem = (item, dispatch) => {
+    dispatch({type: ADD_SAVED_ITEM, item})
+};
+
+export const removeSavedItem = (item, dispatch) => {
+    dispatch({type: REMOVE_SAVED_ITEM, item})
 };

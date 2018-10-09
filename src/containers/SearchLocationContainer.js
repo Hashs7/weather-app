@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 import SearchLocationVue from '../components/Search/SearchLocationVue';
 import { getWeatherByCity, getAutoComplete } from '../api/index';
 
-
+/**
+ *
+ * @param state
+ * @returns {{autoCompleteData: *}}
+ */
 const mapStateToProps = state => {
     return {
         autoCompleteData: state.current.autoComplete
@@ -13,7 +17,7 @@ const mapStateToProps = state => {
 /**
  *
  * @param dispatch
- * @returns {{dispatch: *}}
+ * @returns {{autoCompleteHandle: (function(*=): void), dispatch: *}}
  */
 const mapDispatchToProps = dispatch => {
     return {
@@ -26,10 +30,9 @@ const mapDispatchToProps = dispatch => {
  *
  * @param propsFromState
  * @param propsFromDispatch
- * @param ownProps
- * @returns {{getUserPosition: (function(): void)}}
+ * @returns {{getWeather: (function(*=): void)}}
  */
-const mergeProps  = (propsFromState, propsFromDispatch, ownProps) => {
+const mergeProps  = (propsFromState, propsFromDispatch) => {
     return {
         ...propsFromState,
         ...propsFromDispatch,

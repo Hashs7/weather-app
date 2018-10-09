@@ -57,7 +57,7 @@ export const weatherVue = (props) => (
 
         <StyledWeatherAction>
             <IconSvg name="map" click={props.getUserPosition}/>
-            <IconSvg name="heart" click={props.addSavedPosition}/>
+            <IconSvg name="heart" click={props.toggleSavedPosition}/>
         </StyledWeatherAction>
 
     </StyledWeatherVue>

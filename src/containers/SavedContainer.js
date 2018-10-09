@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import SavedVue from '../components/Saved/SavedVue';
-import {getWeatherByCoordinate, getLocation, getWeatherByCity} from '../api/index';
-import {REMOVE_SAVED_ITEM} from "../store/actions/actions";
+import { getWeatherByCity } from '../api/index';
+import { REMOVE_SAVED_ITEM } from "../store/actions/actions";
 
 /**
  *
  * @param state
- * @returns {{currentCity: (string|string), currentCountry: (string|string)}}
+ * @returns {{currentCity: (string|*|string), allSavedCity: *}}
  */
 const mapStateToProps = state => {
     return {
@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 /**
  *
  * @param dispatch
- * @returns {{dispatch: *}}
+ * @returns {{dispatch: *, getWeather: (function(*=): void), deleteSavedItem: (function(*): *)}}
  */
 const mapDispatchToProps = dispatch => {
     return {
@@ -29,19 +29,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-/**
- *
- * @param propsFromState
- * @param propsFromDispatch
- * @param ownProps
- * @returns {{getUserPosition: (function(): void)}}
- */
-const mergeProps  = (propsFromState, propsFromDispatch, ownProps) => {
-    const { currentLat, currentLong } = propsFromState;
-    return {
-        ...propsFromState,
-        ...propsFromDispatch,
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(SavedVue)
+export default connect(mapStateToProps, mapDispatchToProps)(SavedVue)

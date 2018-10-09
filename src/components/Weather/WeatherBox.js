@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SVG from 'react-inlinesvg';
-import { ICON_LIST } from '../../store/actions/actions';
+import { ICON_LIST } from '../../constantes';
 
 const StyledWeather = styled.div`
     text-align: center;
