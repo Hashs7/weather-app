@@ -18,7 +18,8 @@ export const current = (state = {}, action) => {
             return {
                 ...state,
                 lat: action.payload.latPos,
-                long: action.payload.longPos
+                long: action.payload.longPos,
+                isLocation: true
             };
 
         case UPDATE_WEATHER:

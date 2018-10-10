@@ -8,6 +8,8 @@ const StyledWeather = styled.div`
 `;
 
 const WeatherTitle = styled.span`
+    position: relative;
+    top: -12px;
     font-size: 30px;
 `;
 
@@ -15,8 +17,6 @@ const IconContainer = styled.div`
     width: 140px;
     margin: 0 auto;
 `;
-
-
 
 const WeatherBox = ({imgCode, name}) => {
     const iconPath = `./assets/img/weather/${ICON_LIST[imgCode]}.svg`;

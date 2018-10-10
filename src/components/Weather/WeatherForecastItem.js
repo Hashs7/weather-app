@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import IconWeather from '../../ui/IconWeather'
 const days = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 
 const StyledItem = styled.div`
@@ -10,10 +11,12 @@ const StyledItem = styled.div`
 
 const StyledDay = styled.span`
     display: block;
+    position: relative;
+    top: 5px;
 `;
 
 const StyledTemp = styled(StyledDay)`
-    
+    margin-top: -8px;
 `;
 
 const WeatherForecastItem = ({ day, weather, temp }) => {
@@ -24,7 +27,7 @@ const WeatherForecastItem = ({ day, weather, temp }) => {
     return (
         <StyledItem>
             <StyledDay>{dayName}</StyledDay>
-            <span>{weather}</span>
+            <IconWeather imgCode={weather}/>
             <StyledTemp>{tempFloor}°C</StyledTemp>
         </StyledItem>
     );
