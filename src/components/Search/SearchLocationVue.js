@@ -9,7 +9,7 @@ const StyledInput = styled.input`
     line-height: 40px;
     box-sizing: border-box;
     border: 1px solid #3C3440;
-    border-radius: 40px;
+    border-radius: 6px;
 `;
 
 
@@ -60,7 +60,7 @@ class SearchLocationVue extends React.Component {
                     placeholder="Rechercher"
                     value={this.state.value}
                     onChange={this.handleChange} />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" style={{display: 'none'}}/>
                 {suggestion ? suggestion : null}
             </form>
         );

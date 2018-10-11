@@ -5,15 +5,15 @@ import { ICON_LIST } from '../constantes';
 
 const IconContainer = styled.div`
     width: 100%;
-    height: 67px;
     margin: 0 auto;
 `;
 
 const IconWeather = ({ imgCode }) => {
     const iconPath = `./assets/img/weather/${ICON_LIST[imgCode]}.svg`;
+    console.log(ICON_LIST[imgCode]);
     return (
         <IconContainer>
-            <SVG src={iconPath} style={{width: '100%', height: '100%'}}>
+            <SVG src={iconPath} style={{ height: '67px', display: 'block'}}>
             </SVG>
         </IconContainer>
     );

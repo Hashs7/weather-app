@@ -4,7 +4,6 @@ import SavedBox from './SavedBox';
 
 const StyledSavedContainer = styled.div`
     display: flex;
-    
 `;
 
 
