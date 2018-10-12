@@ -5,14 +5,14 @@ Gobelins Project - Creating Weather Web App
 
 ## Installing
 
-Installing dependancies :
+Installing project dependencies :
 
     npm install
 
 
 ## Running development server
 
-To launch local server :
+Launch local server :
 
     npm run start
 
