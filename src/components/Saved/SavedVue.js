@@ -1,11 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import SavedBox from './SavedBox';
-
-const StyledSavedContainer = styled.div`
-    display: flex;
-`;
-
 
 const SavedVue = ({ allSavedCity, deleteSavedItem, getWeather }) => {
     let displaySavedBox = null;

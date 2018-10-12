@@ -29,7 +29,7 @@ export const ICON_LIST = {
     1171: "drizzle", // fog
     1180: "light_rain_cloud",
     1183: "light_rain_cloud",
-    1186: "rain_cloud_moments",
+    1186: "light_rain_cloud",
     1189: "light_rain_cloud",
     1192: "heavy_rain_cloud",
     1195: "heavy_rain_cloud",

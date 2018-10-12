@@ -23,13 +23,13 @@ const StyledWeatherContainer = styled.div`
 const StyledVueChanger = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    position: absolute;
-    top: 0;
+    width: calc(100% - 30px);
+    position: fixed;
+    top: 15px;
 `;
 const StyledWeatherAction = styled(StyledVueChanger)`
     top: auto;
-    bottom: 0;
+    bottom: 15px;
 `;
 
 export const weatherVue = (props) => (

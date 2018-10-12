@@ -11,11 +11,9 @@ export const getLocation = (dispatch) => {
     };
 
     const geoError = (error) => {
-        switch(error.code) {
-            case error.TIMEOUT:
-                // The user didn't accept the callout
-                console.log('User said NOOOO');
-                break;
+        if (error.TIMEOUT){
+            // The user didn't accept the callout
+            console.log('User said NOOOO');
         }
     };
 

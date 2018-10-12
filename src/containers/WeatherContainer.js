@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import WeatherVue from '../components/Weather/WeatherVue';
 import { getWeatherByCoordinate, getLocation, addSavedItem, removeSavedItem } from '../api/index';
@@ -38,7 +37,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 /**
- * 
+ *
  * @param propsFromState
  * @param propsFromDispatch
  * @param ownProps

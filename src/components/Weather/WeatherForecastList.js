@@ -13,7 +13,7 @@ const WeatherForecastList = ({ prevision }) => {
         allItems = Object.keys(prevision).map(key => {
             const item = prevision[key];
             if(key === '0'){
-                return;
+                return null;
             }
             return(
                 <WeatherForecastItem key={key} day={item.date} weather={item.day.condition.code} temp={item.day.avgtemp_c}/>

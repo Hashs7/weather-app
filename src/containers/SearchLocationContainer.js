@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import SearchLocationVue from '../components/Search/SearchLocationVue';
 import { getWeatherByCity, getAutoComplete } from '../api/index';

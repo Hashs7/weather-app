@@ -25,8 +25,9 @@ export const saved = (state = {}, action) => {
                 ...state,
                 items: state.items.filter(item => item !== action.item)
             };
+        default:
+            return state
     }
-    return state
 };
 
 export default saved;

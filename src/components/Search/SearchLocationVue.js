@@ -23,6 +23,7 @@ class SearchLocationVue extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.suggestion = null;
     }
 
     handleChange(event) {
@@ -40,13 +41,14 @@ class SearchLocationVue extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.getWeather(this.state.value)
+        this.suggestion = null;
+        this.props.getWeather(this.state.value);
+        this.setState({ value: ''});
     }
 
     render() {
-        let suggestion = null;
         if(this.props.autoCompleteData){
-            suggestion = this.props.autoCompleteData.map(item => {
+            this.suggestion = this.props.autoCompleteData.map(item => {
                 return (
                     <SearchSuggest key={item.id} name={item.name} url={item.url} click={(url) => this.props.getWeather(url)}/>
                 );
@@ -61,7 +63,7 @@ class SearchLocationVue extends React.Component {
                     value={this.state.value}
                     onChange={this.handleChange} />
                 <input type="submit" value="Submit" style={{display: 'none'}}/>
-                {suggestion ? suggestion : null}
+                {this.suggestion ? this.suggestion : null}
             </form>
         );
     }
