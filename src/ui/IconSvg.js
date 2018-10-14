@@ -55,7 +55,6 @@ class IconSvg extends React.Component {
                 to={{
                     scale: this.state.isPressed ? 0.8 : 1
                 }}
-                focusItem={{opacity: 0.5}}
             >
             { props  => (
                 <Tappable

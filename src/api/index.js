@@ -29,11 +29,9 @@ export const getLocation = (dispatch) => {
 export const getWeatherByCoordinate = (lat, long, dispatch) => {
     axios.get(API_URL_FORECAST + lat + ',' + long)
         .then((response) => {
-            console.log(response.data);
             dispatch({type: UPDATE_WEATHER, data: response.data})
         })
         .catch((error) => {
-            console.log(error.message);
             throw error;
         });
 };
@@ -44,7 +42,6 @@ export const getWeatherByCity = (city, dispatch) => {
     const normalizeCity = city.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     axios.get(API_URL_FORECAST + normalizeCity)
         .then((response) => {
-            console.log(response.data);
             dispatch({type: UPDATE_WEATHER, data: response.data})
         })
         .catch((error) => {
@@ -59,7 +56,6 @@ export const getAutoComplete = (value, dispatch) => {
     const normalizeCity = value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     axios.get(API_URL_SEARCH + normalizeCity)
         .then((response) => {
-            console.log('getAutoComplete', response.data);
             dispatch({type: UPDATE_AUTOCOMPLETE, data: response.data})
         })
         .catch((error) => {
