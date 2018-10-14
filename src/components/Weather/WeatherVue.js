@@ -18,6 +18,7 @@ const StyledWeatherContainer = styled.div`
     display: block;
     margin: auto;
     width: 100%
+    max-width: 700px;
 `;
 
 const StyledVueChanger = styled.div`
@@ -32,7 +33,12 @@ const StyledWeatherAction = styled(StyledVueChanger)`
     bottom: 15px;
 `;
 
-export const weatherVue = (props) => (
+export const weatherVue = (props) => {
+    let isSaved = false;
+    if(props.savedCities && props.savedCities.filter(city => city === props.currentCity).length){
+        isSaved = true;
+    }
+    return (
     <StyledWeatherVue>
 
         <StyledVueChanger>
@@ -56,11 +62,11 @@ export const weatherVue = (props) => (
         </StyledWeatherContainer>
 
         <StyledWeatherAction>
-            <IconSvg name="map" click={props.getUserPosition}/>
-            <IconSvg name="heart" click={props.toggleSavedPosition}/>
+            <IconSvg name="map" isActive={true} click={props.getUserPosition}/>
+            <IconSvg name="heart" isActive={isSaved} click={props.toggleSavedPosition}/>
         </StyledWeatherAction>
 
     </StyledWeatherVue>
-);
+)};
 
 export default weatherVue;

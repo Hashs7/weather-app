@@ -4,12 +4,15 @@ import styled from 'styled-components';
 
 const StyledInput = styled.input`
     width: 100%;
-    height: 35px;
+    height: 40px;
     padding: 0 20px;
     line-height: 40px;
     box-sizing: border-box;
     border: 1px solid #3C3440;
     border-radius: 6px;
+    &:focus{
+        outline: none;
+    }
 `;
 
 

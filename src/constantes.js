@@ -2,8 +2,8 @@
  *  CONST FOR API
  */
 const API_KEY = '4037fd54a5d149739a173015180210';
-export const API_URL_FORECAST = `http://api.apixu.com/v1/forecast.json?key=${API_KEY}&lang=fr&days=6&q=`;
-export const API_URL_SEARCH = `http://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=`;
+export const API_URL_FORECAST = `https://api.apixu.com/v1/forecast.json?key=${API_KEY}&lang=fr&days=6&q=`;
+export const API_URL_SEARCH = `https://api.apixu.com/v1/search.json?key=${API_KEY}&lang=fr&q=`;
 
 
 /**

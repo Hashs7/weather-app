@@ -1,6 +1,5 @@
 // TODO
 
-Add forecasts icons
 Add night icons
 Desktop design
 Delete search results on reload

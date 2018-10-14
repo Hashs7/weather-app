@@ -10,10 +10,10 @@ const IconContainer = styled.div`
 
 const IconWeather = ({ imgCode }) => {
     const iconPath = `./assets/img/weather/${ICON_LIST[imgCode]}.svg`;
-    console.log(ICON_LIST[imgCode]);
+
     return (
         <IconContainer>
-            <SVG src={iconPath} style={{ height: '67px', display: 'block'}}>
+            <SVG src={iconPath} style={{ width: '67px', margin: 'auto'}}>
             </SVG>
         </IconContainer>
     );

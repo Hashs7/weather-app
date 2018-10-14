@@ -4,51 +4,64 @@ import { Spring } from 'react-spring';
 import SVG from 'react-inlinesvg';
 import Tappable from 'react-tappable/lib/Tappable';
 
-const StyledIconSvg = styled.div`
-    width: 28px;
-    height: 28px;
-`;
+
 
 class IconSvg extends React.Component {
     constructor (props){
         super(props);
-        this.state = {
-            isPressed: false
-        }
+        this.state = { isPressed: false }
     }
 
     onPressHandler = () => {
         this.setState({isPressed: true });
     }
 
-    onReleaseHandler = () => {
+    onReleaseHandler = (e) => {
+        this.props.click(e);
         this.setState({isPressed: false });
-        this.props.click();
+        console.log('clicked')
+    }
+
+    onLeave = () => {
+        this.setState({isPressed: false });
     }
 
     render(){
-        const path = `./assets/img/${this.props.name}.svg`;
+        const { name, isActive } = this.props;
+        const path = `./assets/img/${name}.svg`;
+        const StyledIconSvg = styled.div`
+            width: 28px;
+            height: 28px;
+            & .isvg svg .fill {
+                fill: ${isActive ? '#4043b7' : '#FFF'};
+            }
+            & .isvg svg .stroke {
+                fill: #4043b7
+            }
+        `;
+
         return (
             <Spring
                 from={{
-                    opacity: 0,
-                    scale: 1
+                    scale: 0.5
                 }}
                 to={{
-                    opacity: 1,
                     scale: this.state.isPressed ? 0.8 : 1
                 }}
                 focusItem={{opacity: 0.5}}
             >
             { props  => (
-                <div style={{opacity: props.opacity, transform: `scale3d(${props.scale}, ${props.scale}, ${props.scale}`}}>
-                    <Tappable onTouchStart={this.onPressHandler} onTouchEnd={this.onReleaseHandler}>
-                        <StyledIconSvg>
-                            <SVG src={path} alt="" style={{width: '100%', height: '100%'}}>
-                            </SVG>
-                        </StyledIconSvg>
-                    </Tappable>
-                </div>
+                <Tappable
+                    style={{opacity: props.opacity, transform: `scale3d(${props.scale}, ${props.scale}, ${props.scale}`}}
+                    onMouseEnter={this.onPressHandler}
+                    onTap={this.onReleaseHandler}
+                    onMouseLeave={this.onLeave}
+                >
+                    <StyledIconSvg>
+                        <SVG src={path} style={{width: '100%', height: '100%', fill: this.props.color}}>
+                        </SVG>
+                    </StyledIconSvg>
+                </Tappable>
             )}
             </Spring>
         );

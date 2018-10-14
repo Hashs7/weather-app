@@ -14,7 +14,7 @@ const WeatherTitle = styled.span`
 `;
 
 const IconContainer = styled.div`
-    width: 140px;
+    width: 32%;
     margin: 0 auto;
 `;
 

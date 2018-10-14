@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import IconSvg from "../../ui/IconSvg";
 
 const StyledSavedBox = styled.div`
-    width: 95%;
+    display: flex;
+    justify-content: space-between
+    width: 100%;
     margin: 10px auto;
-    height: 50px;
-    padding: 10px;
+    box-sizing: border-box;
+    padding: 15px;
     border-radius: 8px;
     color: #fff;
     background-color: #5F6AF4;
@@ -15,12 +18,9 @@ const Title = styled.span`
     display: block;
     font-size: 20px;
 `;
-const SubTitle = styled.span`
-    display: block;
-    font-size: 14px;
-`;
 
-const SavedBox = ({ city, region, country, deleteSavedItem, removeHandle, getWeather }) => {
+
+const SavedBox = ({ city, deleteSavedItem, removeHandle, getWeather }) => {
     const clickHandler = (e) => {
         e.stopPropagation();
         removeHandle();
@@ -28,8 +28,7 @@ const SavedBox = ({ city, region, country, deleteSavedItem, removeHandle, getWea
     return (
         <StyledSavedBox onClick={getWeather}>
             <Title>{city}</Title>
-            <SubTitle>{region}, {country}</SubTitle>
-            <button onClick={clickHandler}>Supprimer</button>
+            <IconSvg name="heart" color={"#fff"} click={clickHandler}/>
         </StyledSavedBox>
     );
 };
