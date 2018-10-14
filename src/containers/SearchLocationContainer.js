@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import SearchLocationVue from '../components/Search/SearchLocationVue';
 import { getWeatherByCity, getAutoComplete } from '../api/index';
+import {CHANGE_INDEX_VUE, DELETE_SUGGESTION} from "../store/actions/actions";
 
 /**
  *
@@ -21,6 +22,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         autoCompleteHandle: (value) => getAutoComplete(value, dispatch),
+        goToVue: (i) => dispatch({type: CHANGE_INDEX_VUE, index: i}),
+        deleteSuggest: () => dispatch({type: DELETE_SUGGESTION}),
         dispatch: dispatch,
     }
 };

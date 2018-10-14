@@ -3,7 +3,8 @@ import {
     UPDATE_WEATHER,
     CHANGE_INDEX_VUE,
     VUE_HOME,
-    UPDATE_AUTOCOMPLETE
+    UPDATE_AUTOCOMPLETE,
+    DELETE_FORECAST, DELETE_SUGGESTION
 } from '../actions/actions'
 
 /**
@@ -47,6 +48,12 @@ export const current = (state = {}, action) => {
                 ...state,
                 autoComplete: action.data
             };
+
+        case DELETE_SUGGESTION:
+            return {
+                ...state,
+                autoComplete: null
+            }
         default:
             return state;
     }

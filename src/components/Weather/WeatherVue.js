@@ -5,7 +5,8 @@ import WeatherInfos from "./WeatherInfos";
 import WeatherBox from "./WeatherBox";
 import { VUE_SEARCH, VUE_SAVED } from "../../store/actions/actions";
 import WeatherForecast from './WeatherForecastList';
-import IconSvg from "../../ui/IconSvg";
+import IconSvg from '../../ui/IconSvg';
+import { StyledVueChanger } from '../../ui/Styled';
 
 const StyledWeatherVue = styled.div`
     position: relative;
@@ -21,13 +22,6 @@ const StyledWeatherContainer = styled.div`
     max-width: 700px;
 `;
 
-const StyledVueChanger = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: calc(100% - 30px);
-    position: fixed;
-    top: 15px;
-`;
 const StyledWeatherAction = styled(StyledVueChanger)`
     top: auto;
     bottom: 15px;
@@ -38,35 +32,36 @@ export const weatherVue = (props) => {
     if(props.savedCities && props.savedCities.filter(city => city === props.currentCity).length){
         isSaved = true;
     }
+
     return (
-    <StyledWeatherVue>
+        <StyledWeatherVue>
 
-        <StyledVueChanger>
-            <IconSvg name="saved" click={() => props.goToVue(VUE_SAVED)}/>
-            <IconSvg name="search" click={() => props.goToVue(VUE_SEARCH)}/>
-        </StyledVueChanger>
+            <StyledVueChanger>
+                <IconSvg width={28} name="saved" click={() => props.goToVue(VUE_SAVED)}/>
+                <IconSvg width={28} name="search" click={() => props.goToVue(VUE_SEARCH)}/>
+            </StyledVueChanger>
 
-        <StyledWeatherContainer>
-            <WeatherAdress city={props.currentCity} country={props.currentCountry} />
+            <StyledWeatherContainer>
+                <WeatherAdress city={props.currentCity} country={props.currentCountry} />
 
-            <WeatherBox
-                name={props.currentConditionName}
-                imgCode={props.currentImgCode}/>
+                <WeatherBox
+                    name={props.currentConditionName}
+                    imgCode={props.currentImgCode}/>
 
-            <WeatherInfos
-                wind={props.currentWind}
-                humidity={props.currentHumidity}
-                temp={props.currentTemp}/>
+                <WeatherInfos
+                    wind={props.currentWind}
+                    humidity={props.currentHumidity}
+                    temp={props.currentTemp}/>
 
-            <WeatherForecast prevision={props.currentForecast}/>
-        </StyledWeatherContainer>
+                <WeatherForecast prevision={props.currentForecast}/>
+            </StyledWeatherContainer>
 
-        <StyledWeatherAction>
-            <IconSvg name="map" isActive={true} click={props.getUserPosition}/>
-            <IconSvg name="heart" isActive={isSaved} click={props.toggleSavedPosition}/>
-        </StyledWeatherAction>
+            <StyledWeatherAction>
+                <IconSvg width={28} name="map" isActive={true} click={props.getUserPosition}/>
+                <IconSvg width={28} name="heart" isActive={isSaved} click={props.toggleSavedPosition}/>
+            </StyledWeatherAction>
 
-    </StyledWeatherVue>
+        </StyledWeatherVue>
 )};
 
 export default weatherVue;

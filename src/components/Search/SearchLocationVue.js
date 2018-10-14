@@ -1,8 +1,12 @@
 import React from 'react';
 import SearchSuggest from './SearchSuggest';
 import styled from 'styled-components';
+import {StyledHead, StyledTitle, StyledVueChanger} from '../../ui/Styled';
+import { VUE_HOME } from '../../store/actions/actions';
+import IconSvg from '../../ui/IconSvg';
 
 const StyledInput = styled.input`
+    margin-bottom: 15px;
     width: 100%;
     height: 40px;
     padding: 0 20px;
@@ -10,9 +14,25 @@ const StyledInput = styled.input`
     box-sizing: border-box;
     border: 1px solid #3C3440;
     border-radius: 6px;
+    font-size: 1rem;
     &:focus{
         outline: none;
     }
+`;
+
+const ResultsContainer = styled.div`
+    text-align: left;
+`;
+
+const StyledForm = styled.form`
+    position: relative;
+`;
+
+const StyledSearchBtn = styled.div`
+    display: inline-block;
+    position: absolute;
+    top: -3px;
+    right: 0;
 `;
 
 
@@ -53,21 +73,48 @@ class SearchLocationVue extends React.Component {
         if(this.props.autoCompleteData){
             this.suggestion = this.props.autoCompleteData.map(item => {
                 return (
-                    <SearchSuggest key={item.id} name={item.name} url={item.url} click={(url) => this.props.getWeather(url)}/>
+                    <SearchSuggest
+                        key={item.id}
+                        name={item.name}
+                        url={item.url}
+                        click={(url) => (
+                            this.props.getWeather(url),
+                            this.props.deleteSuggest()
+                        )}/>
                 );
             })
         }
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <StyledInput
-                    type="text"
-                    placeholder="Rechercher"
-                    value={this.state.value}
-                    onChange={this.handleChange} />
-                <input type="submit" value="Submit" style={{display: 'none'}}/>
-                {this.suggestion ? this.suggestion : null}
-            </form>
+            <div>
+                <StyledHead>
+                    <StyledTitle>Recherche</StyledTitle>
+                    <StyledVueChanger style={{ justifyContent: 'flex-start' }}>
+                        <IconSvg
+                            width={20}
+                            name="chevron-left"
+                            click={() => this.props.goToVue(VUE_HOME)}/>
+                    </StyledVueChanger>
+                </StyledHead>
+                <StyledForm onSubmit={this.handleSubmit}>
+                    <StyledInput
+                        type="text"
+                        placeholder="Rechercher"
+                        value={this.state.value}
+                        onChange={this.handleChange} />
+                    <StyledSearchBtn>
+                        <IconSvg
+                            width={20}
+                            name="search"
+                            click={() => this.handleSubmit}/>
+                        <input type="submit" value="Submit" style={{display: 'none'}}/>
+                    </StyledSearchBtn>
+                </StyledForm>
+                <ResultsContainer>
+                    {this.suggestion ? this.suggestion : null}
+                </ResultsContainer>
+            </div>
+
         );
     }
 }

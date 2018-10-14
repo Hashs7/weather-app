@@ -19,7 +19,6 @@ class IconSvg extends React.Component {
     onReleaseHandler = (e) => {
         this.props.click(e);
         this.setState({isPressed: false });
-        console.log('clicked')
     }
 
     onLeave = () => {
@@ -27,16 +26,24 @@ class IconSvg extends React.Component {
     }
 
     render(){
-        const { name, isActive } = this.props;
-        const path = `./assets/img/${name}.svg`;
+        const { name, isActive, width } = this.props;
+        const path = `./assets/img/ui/${name}.svg`;
         const StyledIconSvg = styled.div`
-            width: 28px;
-            height: 28px;
-            & .isvg svg .fill {
-                fill: ${isActive ? '#4043b7' : '#FFF'};
-            }
-            & .isvg svg .stroke {
-                fill: #4043b7
+            width: ${width}px;
+            height: ${width}px;
+            padding: ${34 - width}px;
+            display: inline-block;
+            vertical-align: middle;
+            
+            & .isvg svg {
+                display: inline-block;
+                vertical-align: top;
+                & .fill {
+                    fill: ${isActive ? '#3c3440' : '#FFF'};
+                }
+                & .stroke {
+                    fill: #3c3440
+                }
             }
         `;
 
