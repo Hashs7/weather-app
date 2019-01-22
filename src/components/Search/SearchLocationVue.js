@@ -78,8 +78,7 @@ class SearchLocationVue extends React.Component {
                         name={item.name}
                         url={item.url}
                         click={(url) => (
-                            this.props.getWeather(url),
-                            this.props.deleteSuggest()
+                            this.props.getWeather(url)
                         )}/>
                 );
             })

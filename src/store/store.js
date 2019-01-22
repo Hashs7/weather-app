@@ -4,7 +4,7 @@ import saved from './reducers/saved';
 
 const rootReducer = combineReducers({
     current,
-    settings: saved
+    saved
 });
 
 export default rootReducer;
