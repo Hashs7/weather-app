@@ -98,7 +98,7 @@
     "react-draggable-list": "^3.7.0",
     "react-inlinesvg": "^0.8.4",
     "react-redux": "^5.1.1",
-    "react-spring": "^5.9.2",
+    "react-spring": "^8.0.27",
     "react-swipeable-views": "^0.13.1",
     "react-tappable": "^1.0.4",
     "redux": "^4.0.1",
